@@ -5,12 +5,13 @@ $(document).ready(function() {
     const Selection_check = []
     // Listen for changes on each input checkbox tag:
     $('input:checkbox').change(function(){
+       // debugger
         if ($(this).is(':checked')) {
             //agregamos data-name al final de la lista
-            Selection_check.push($(this).parent().attr('data-name'));
+            Selection_check.push($(this).attr('data-name'));
         } else {
             // if the checkbox is unchecked, you must remove the Amenity ID from the variable
-            const index = Selection_check.indexOf(($(this).parent().attr('data-name')));
+            const index = Selection_check.indexOf(($(this).attr('data-name')));
             if (index > -1) {
                 Selection_check.splice(index, 1);
             }
