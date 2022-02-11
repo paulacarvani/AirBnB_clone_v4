@@ -12,13 +12,12 @@ $(document).ready(function () {
     }
     $('.amenities h4').text(selectionCheck.join('. '));
   });
-  //const url = 'http://0.0.0.0:5001/api/v1/status/';
-  $.get('http://0.0.0.0:5001/api/v1/status/', function (respose) {
-    if (respose.status === 'OK') {
-      $('div#api_status').addClass('available');
-      // $('.available').css('back-groud','#ff54ff')
+  const url = 'http://0.0.0.0:5001/api/v1/';
+  $.get(url + 'status/', (data, status) => {
+    if (status === 'success' && data.status === 'OK') {
+      $('#api_status').addClass('available');
     } else {
-      $('div#api_status').removeClass('available');
+      $('#api_status').removeClass('available');
     }
   });
 });
