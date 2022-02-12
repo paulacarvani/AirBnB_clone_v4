@@ -12,12 +12,12 @@ $(document).ready(function () {
     }
     $('.amenities h4').text(selectionCheck.join('. '));
   });
-  const url = 'http://0.0.0.0:5001/api/v1/';
-  $.get(url + 'status/', (data, status) => {
-    if (status === 'success' && data.status === 'OK') {
-      $('#api_status').addClass('available');
+
+  $.get('http://0.0.0.0:5001/api/v1/status/', function (response) {
+    if (response.status === 'OK') {
+      $('div#api_status').addClass('available');
     } else {
-      $('#api_status').removeClass('available');
+      $('div#api_status').removeClass('available');
     }
   });
 });
