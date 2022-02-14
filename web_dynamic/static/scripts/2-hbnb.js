@@ -13,9 +13,11 @@ $(document).ready(function () {
     $('.amenities h4').text(selectionCheck.join('. '));
   });
 
-  $.get('http://0.0.0.0:5001/api/v1/status/', function (response) {
+  //getJSON, trae el html como objeto JSON
+  $.getJSON('http://192.168.18.11:5001/api/v1/status/', function (response) {
     if (response.status === 'OK') {
       $('div#api_status').addClass('available');
+     // $('#api_status').css('color', 'red');
     } else {
       $('div#api_status').removeClass('available');
     }
