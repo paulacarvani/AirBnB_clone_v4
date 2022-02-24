@@ -1,4 +1,19 @@
-$(document).ready(function () {
+const CheckStatus = async () => {
+  // Checking status of server in port 5001
+  const url = `http://${window.location.hostname}/api/v1/status`;
+  await $.get(url, (data) => {
+    if (data.status === 'OK') {
+      console.log('OK');
+      $('#api_status').addClass('available');
+      return;
+    }
+    console.log('NO');
+    $('#api_status').removeClass('available');
+  });
+};
+
+window.addEventListener('load', () => {
+  CheckStatus();
   const selectionCheck = [];
   $('input:checkbox').change(function () {
     // debugger
@@ -11,15 +26,5 @@ $(document).ready(function () {
       }
     }
     $('.amenities h4').text(selectionCheck.join('. '));
-  });
-
-  //getJSON, trae el html como objeto JSON
-  $.getJSON('http://192.168.18.11:5001/api/v1/status/', function (response) {
-    if (response.status === 'OK') {
-      $('div#api_status').addClass('available');
-     // $('#api_status').css('color', 'red');
-    } else {
-      $('div#api_status').removeClass('available');
-    }
   });
 });
